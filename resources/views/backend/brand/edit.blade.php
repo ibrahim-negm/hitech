@@ -1,5 +1,4 @@
-
-@extends('admin.admin_master')
+@extends('backend.layouts.admin_master')
 @section('title-content') تحديث شركاء النجاح( ماركات تجارية ) - هاى تك للتقسيط @endsection
 
 @section('admin-content')

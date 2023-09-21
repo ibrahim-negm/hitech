@@ -1,4 +1,4 @@
-@extends('admin.admin_master')
+@extends('backend.layouts.admin_master')
 @section('title-content')  تعديل منتج - هاى تك للتقسيط @endsection
 
 

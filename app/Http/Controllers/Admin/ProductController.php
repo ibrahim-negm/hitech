@@ -17,10 +17,6 @@ use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum,admin']);
-    }
 
 
     /**
@@ -34,15 +30,15 @@ class ProductController extends Controller
                 $brand_id = Auth::user()->brand->id;
                 $products = Product::where('brand_id',$brand_id)
                     ->where('status',0)->where('approved',0)->latest()->get();
-                return view('admin.product.product',compact('products'));
+                return view('backend.product.product',compact('products'));
             }elseif(Auth::user()->permission->product==1){
                 $products = Product::where('status',0)->where('approved',0)->latest()->get();
-                return view('admin.product.product',compact('products'));
+                return view('backend.product.product',compact('products'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -60,15 +56,15 @@ class ProductController extends Controller
             $brand_id = Auth::user()->brand->id;
             $products = Product::where('brand_id',$brand_id)
                     ->where('status',1)->where('approved',1)->latest()->get();
-                return view('admin.product.product',compact('products'));
+                return view('backend.product.product',compact('products'));
             }elseif(Auth::user()->permission->product==1){
                 $products = Product::where('status',1)->where('approved',1)->latest()->get();
-                return view('admin.product.product',compact('products'));
+                return view('backend.product.product',compact('products'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -84,15 +80,15 @@ class ProductController extends Controller
                 $brand_id = Auth::user()->brand->id;
                 $products = Product::where('brand_id',$brand_id)
                     ->where('status',0)->where('approved',1)->latest()->get();
-                return view('admin.product.product',compact('products'));
+                return view('backend.product.product',compact('products'));
             }elseif(Auth::user()->permission->product==1){
                 $products = Product::where('status',0)->where('approved',1)->latest()->get();
-                return view('admin.product.product',compact('products'));
+                return view('backend.product.product',compact('products'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -109,15 +105,15 @@ class ProductController extends Controller
                 $brand_id = Auth::user()->brand->id;
                 $products = Product::where('brand_id',$brand_id)
                     ->where('status',1)->where('approved',0)->latest()->get();
-                return view('admin.product.product',compact('products'));
+                return view('backend.product.product',compact('products'));
             }elseif(Auth::user()->permission->product==1){
                 $products = Product::where('status',1)->where('approved',0)->latest()->get();
-                return view('admin.product.product',compact('products'));
+                return view('backend.product.product',compact('products'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -133,12 +129,12 @@ class ProductController extends Controller
                 $services = Service::all();
                 $categories = Category::all();
                 $brands = Brand::all();
-                return view('admin.product.create',compact('services','categories','brands'));
+                return view('backend.product.create',compact('services','categories','brands'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -292,7 +288,7 @@ class ProductController extends Controller
                 }
 
             }catch(\Exception $ex){
-             return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+             return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
             }
     }
 
@@ -310,7 +306,7 @@ class ProductController extends Controller
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -330,7 +326,7 @@ class ProductController extends Controller
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -358,7 +354,7 @@ class ProductController extends Controller
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -384,7 +380,7 @@ class ProductController extends Controller
             }
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -413,7 +409,7 @@ class ProductController extends Controller
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -442,7 +438,7 @@ class ProductController extends Controller
             }
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -461,13 +457,13 @@ class ProductController extends Controller
                 $product_images = Product_image::where('product_id',$id)->get();
                 $product_installments = Installment::where('product_id',$id)->get();
 
-                return view('admin.product.show',compact('product','product_images','product_installments'));
+                return view('backend.product.show',compact('product','product_images','product_installments'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -488,12 +484,12 @@ class ProductController extends Controller
                 $services = Service::all();
                 $product_images = Product_image::where('product_id',$id)->get();
                 $product_installments = Installment::where('product_id',$id)->get();
-                 return view('admin.product.edit',compact('product','categories','brands','subCategories','services','subsubCategories','product_images','product_installments'));
+                 return view('backend.product.edit',compact('product','categories','brands','subCategories','services','subsubCategories','product_images','product_installments'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -589,7 +585,7 @@ class ProductController extends Controller
             }
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -670,7 +666,7 @@ class ProductController extends Controller
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -697,7 +693,7 @@ class ProductController extends Controller
 
             }
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -748,7 +744,7 @@ class ProductController extends Controller
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -788,7 +784,7 @@ class ProductController extends Controller
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }

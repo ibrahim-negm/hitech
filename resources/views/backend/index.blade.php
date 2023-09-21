@@ -43,7 +43,7 @@ $order_details = Order_details::latest()->get();
 
 ?>
 
-@extends('admin.admin_master')
+@extends('backend.layouts.admin_master')
 @section('title-content') لوحة التحكم - هاى تك للتقسيط @endsection
 
 @section('admin-content')

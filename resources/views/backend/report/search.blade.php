@@ -1,4 +1,4 @@
-@extends('admin.admin_master')
+@extends('backend.layouts.admin_master')
 @section('title-content')  التقارير البحث عن - هاى تك للتقسيط @endsection
 
 @section('admin-content')

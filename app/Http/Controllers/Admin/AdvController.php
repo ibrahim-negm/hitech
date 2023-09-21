@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AdvController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum,admin']);
-    }
 
     /**
      * Adv
@@ -23,15 +19,15 @@ class AdvController extends Controller
         try{
             if(Auth::user()->permission->advs == 1){
                 $advs = Adv::latest()->get();
-                return view('admin.adv.adv',compact('advs'));
+                return view('backend.adv.adv',compact('advs'));
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -44,15 +40,15 @@ class AdvController extends Controller
         try{
 
             if(Auth::user()->permission->advs == 1){
-                return view('admin.adv.create');
+                return view('backend.adv.create');
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -91,14 +87,14 @@ class AdvController extends Controller
 
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -127,14 +123,14 @@ class AdvController extends Controller
                 return redirect()->route('admin.adv')->with('success','تم تعديل حالة الاعلان الى فعال بنجاح');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -157,14 +153,14 @@ class AdvController extends Controller
                 return redirect()->route('admin.adv')->with('success','تم تعديل حالة الاعلان الى غير فعال بنجاح');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -180,15 +176,15 @@ class AdvController extends Controller
 
             if(Auth::user()->permission->advs == 1){
                 $adv = Adv::find($id);
-                return view('admin.adv.edit',compact('adv'));
+                return view('backend.adv.edit',compact('adv'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -222,13 +218,13 @@ class AdvController extends Controller
 
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -248,12 +244,12 @@ class AdvController extends Controller
                 return redirect()->route('admin.adv')->with('success','تم حذف الاعلان بنجاح');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }

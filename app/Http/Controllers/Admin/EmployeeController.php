@@ -13,14 +13,6 @@ use Intervention\Image\Facades\Image;
 class EmployeeController extends Controller
 {
     /**
-     * EmployeeController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum,admin']);
-    }
-
-    /**
      * ShowEmployee
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -29,13 +21,13 @@ class EmployeeController extends Controller
         try{
             if(Auth::user()->permission->employee == 1){
                 $employees = Employee::latest()->get();
-                return view('admin.employee.employee',compact('employees'));
+                return view('backend.employee.employee',compact('employees'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -92,13 +84,13 @@ class EmployeeController extends Controller
                 return redirect()->route('admin.employee')->with('success','تم اضافة الموظف بنجاح');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -112,14 +104,14 @@ class EmployeeController extends Controller
         try{
             if(Auth::user()->permission->employee == 1){
                 $employee = Employee::find($id);
-                return view('admin.employee.edit',compact('employee'));
+                return view('backend.employee.edit',compact('employee'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -189,7 +181,7 @@ class EmployeeController extends Controller
 
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
@@ -197,7 +189,7 @@ class EmployeeController extends Controller
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -217,12 +209,12 @@ class EmployeeController extends Controller
                 return redirect()->route('admin.brand')->with('success','تم حذف الموظف بنجاح ');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }

@@ -11,13 +11,6 @@ use Intervention\Image\Facades\Image;
 
 class PostController extends Controller
 {
-    /**
-     * PostController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum,admin']);
-    }
 
     /**
      * Index
@@ -28,12 +21,12 @@ class PostController extends Controller
         try{
             if(Auth::user()->permission->post==1){
                 $posts = Post::latest()->get();
-                return view('admin.post.post',compact('posts'));
+                return view('backend.post.post',compact('posts'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -48,12 +41,12 @@ class PostController extends Controller
             if(Auth::user()->permission->post==1){
                 $services = Service::all();
 
-                return view('admin.post.create',compact('services'));
+                return view('backend.post.create',compact('services'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -120,7 +113,7 @@ class PostController extends Controller
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -144,7 +137,7 @@ class PostController extends Controller
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -171,7 +164,7 @@ class PostController extends Controller
             }
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -188,13 +181,13 @@ class PostController extends Controller
             if(Auth::user()->permission->post==1){
                 $post_data =Post::find($id);
 
-                return view('admin.post.show',compact('post_data'));
+                return view('backend.post.show',compact('post_data'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -211,12 +204,12 @@ class PostController extends Controller
                 $services = Service::all();
 
 
-                return view('admin.post.edit',compact('post_data','services'));
+                return view('backend.post.edit',compact('post_data','services'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -287,7 +280,7 @@ class PostController extends Controller
             }
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -314,7 +307,7 @@ class PostController extends Controller
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }

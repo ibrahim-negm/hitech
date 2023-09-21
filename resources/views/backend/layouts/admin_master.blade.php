@@ -118,18 +118,18 @@ $new_comments= \App\Models\Front\Comment::where('status',0)->latest()->get();
 <!-- fixed-top-->
 <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-dark navbar-shadow">
 
-    @include('admin.body.header')
+    @include('backend.layouts.header')
 </nav>
 
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
-    @include('admin.body.sidebar')
+    @include('backend.layouts.sidebar')
 </div>
 <div class="app-content content">
    @yield('admin-content')
 </div>
 <!-- ////////////////////////////////////////////////////////////////////////////-->
-    @include('admin.body.footer')
+    @include('backend.layouts.footer')
 
 <!-- BEGIN VENDOR JS-->
 <script src="{{ asset('backend/vendors/js/vendors.min.js') }}" type="text/javascript"></script>

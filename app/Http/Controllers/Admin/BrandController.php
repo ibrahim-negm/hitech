@@ -12,14 +12,7 @@ use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
 {
-    /**
-     * BrandController constructor.
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum,admin']);
-    }
+
 
     /**
      * ShowBrand
@@ -31,15 +24,15 @@ class BrandController extends Controller
             if(Auth::user()->permission->brand == 1){
                 $brands = Brand::latest()->get();
                 $admins = Admin::all();
-                return view('admin.brand.brand',compact('brands','admins'));
+                return view('backend.brand.brand',compact('brands','admins'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -82,13 +75,13 @@ class BrandController extends Controller
                 return redirect()->route('admin.brand')->with('success','تم اضافة ماركة عالمية بنجاح');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -103,14 +96,14 @@ class BrandController extends Controller
             if(Auth::user()->permission->brand == 1){
                 $brand = Brand::find($id);
                 $admins = Admin::all();
-                return view('admin.brand.edit',compact('brand','admins'));
+                return view('backend.brand.edit',compact('brand','admins'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -158,7 +151,7 @@ class BrandController extends Controller
                 return redirect()->route('admin.brand')->with('success','تم تحديث الماركة العالمية بنجاح');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
@@ -166,7 +159,7 @@ class BrandController extends Controller
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -185,14 +178,14 @@ class BrandController extends Controller
                 return redirect()->route('admin.brand')->with('success','تم حذف الماركة العالمية بنجاح');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
 
 
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }

@@ -1,4 +1,4 @@
-@extends('admin.admin_master')
+@extends('backend.layouts.admin_master')
 @section('title-content')  تفاصيل الاستعلام - هاى تك للتقسيط @endsection
 
 @section('admin-content')

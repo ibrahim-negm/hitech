@@ -1,4 +1,4 @@
-@extends('admin.admin_master')
+@extends('backend.layouts.admin_master')
 @section('title-content')الاعدادات العامة للموقع - هاى تك للتقسيط  @endsection
 <link href="{{ asset('backend/lib/summernote/summernote-bs4.css') }}" rel="stylesheet">
 @section('admin-content')

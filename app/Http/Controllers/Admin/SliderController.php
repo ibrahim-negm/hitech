@@ -10,13 +10,7 @@ use Intervention\Image\Facades\Image;
 
 class SliderController extends Controller
 {
-    /**
-     * SliderController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum,admin']);
-    }
+
 
     /**
      * Slider
@@ -26,14 +20,14 @@ class SliderController extends Controller
         try{
             if(Auth::user()->permission->slider==1) {
                 $sliders = Slider::latest()->get();
-                return view('admin.slider.slider',compact('sliders'));
+                return view('backend.slider.slider',compact('sliders'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -45,14 +39,14 @@ class SliderController extends Controller
     public function CreateSlider(){
         try{
             if(Auth::user()->permission->slider==1) {
-                return view('admin.slider.create');
+                return view('backend.slider.create');
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -104,12 +98,12 @@ class SliderController extends Controller
                 return redirect()->route('admin.slider')->with('success','تم اضافة سلايدر جديد بنجاح');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -125,14 +119,14 @@ class SliderController extends Controller
 
           if(Auth::user()->permission->slider==1) {
               $slider = Slider::find($id);
-              return view('admin.slider.edit',compact('slider'));
+              return view('backend.slider.edit',compact('slider'));
           }else{
-              return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+              return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
           }
 
       }catch (\Exception $ex){
-          return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+          return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
       }
     }
@@ -194,7 +188,7 @@ class SliderController extends Controller
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -219,7 +213,7 @@ class SliderController extends Controller
 
 
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -251,7 +245,7 @@ class SliderController extends Controller
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -279,7 +273,7 @@ class SliderController extends Controller
             }
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 

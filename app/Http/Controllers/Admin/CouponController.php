@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CouponController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum,admin']);
-    }
 
     /**
      * ShowCoupon
@@ -24,13 +20,13 @@ class CouponController extends Controller
         try{
             if(Auth::user()->permission->coupon==1){
                 $coupons = Coupon::latest()->get();
-                return view('admin.coupon.coupon',compact('coupons'));
+                return view('backend.coupon.coupon',compact('coupons'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -67,7 +63,7 @@ class CouponController extends Controller
                 return redirect()->route('admin.coupon')->with('success','تم اضافة هذا الاشعار بنجاح');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
             }
 
         }catch(\Exception $ex){
@@ -85,16 +81,16 @@ class CouponController extends Controller
         try{
             if(Auth::user()->permission->coupon==1){
                 $coupon = Coupon::find($id);
-                return view('admin.coupon.edit',compact('coupon'));
+                return view('backend.coupon.edit',compact('coupon'));
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
             }
 
         }catch(\Exception $ex){
 
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -127,15 +123,15 @@ class CouponController extends Controller
                     'updated_at'=>Carbon::now(),
                 ]);
 
-                return redirect()->route('admin.coupon')->with('success','تم تحديث الاشعار بنجاح',);
+                return redirect()->route('admin.coupon')->with('success','تم تحديث الاشعار بنجاح');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -151,12 +147,12 @@ class CouponController extends Controller
                 Coupon::find($id)->delete();
                 return redirect()->route('admin.coupon')->with('error','تم مسح هذا الاشعار بنجاح');
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 

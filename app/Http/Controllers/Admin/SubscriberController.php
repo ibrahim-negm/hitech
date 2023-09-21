@@ -11,13 +11,7 @@ use Illuminate\Support\Facades\Mail;
 
 class SubscriberController extends Controller
 {
-    /**
-     * SubscriberController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum,admin']);
-    }
+
 
     /**
      * ShowSubscriber
@@ -28,14 +22,14 @@ class SubscriberController extends Controller
         try{
             if(Auth::user()->permission->subscriber==1){
                 $subscribers = Subscriber::latest()->get();
-                return view('admin.subscriber.subscriber',compact('subscribers'));
+                return view('backend.subscriber.subscriber',compact('subscribers'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول الى هذه المنطقة');
 
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -57,7 +51,7 @@ class SubscriberController extends Controller
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -69,14 +63,14 @@ class SubscriberController extends Controller
         try{
             if(Auth::user()->permission->subscriber==1){
                 $subscribers = Subscriber::latest()->get();
-                return view('admin.subscriber.show',compact('subscribers'));
+                return view('backend.subscriber.show',compact('subscribers'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول الى هذه المنطقة');
 
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
 
     }
@@ -128,7 +122,7 @@ class SubscriberController extends Controller
              }
          }catch(\Exception $ex){
 
-             return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+             return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
          }
      }
 

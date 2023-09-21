@@ -13,9 +13,7 @@ use Illuminate\Validation\Rule;
 
 class RoleController extends Controller
 {
-    public function __construct(){
-        $this->middleware(['auth:sanctum,admin']);
-    }
+
 
     /**
      * ShowAdmin
@@ -26,7 +24,7 @@ class RoleController extends Controller
         try{
             if(Auth::user()->permission->role==1) {
                 $admins = Permission::whereIn('type', [2,3])->latest()->get();
-                return view('admin.role.show', compact('admins'));
+                return view('backend.role.show', compact('admins'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول الى هذه المنطقة');
             }
@@ -45,12 +43,12 @@ class RoleController extends Controller
     public function CreateAdmin(){
         try{
             if(Auth::user()->permission->role==1) {
-            return view('admin.role.create');
+            return view('backend.role.create');
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول الى هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -122,14 +120,14 @@ class RoleController extends Controller
 
 
             Permission::create($data);
-            return redirect()->route('admin.show.admin')->with('success','تم إضافة مدير جديد بنجاح',);
+            return redirect()->route('admin.show.admin')->with('success','تم إضافة مدير جديد بنجاح');
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول الى هذه المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -152,14 +150,14 @@ class RoleController extends Controller
                     @unlink(public_path('upload/backend/users/'.$admin->profile_photo_path));
                 }
             $admin->delete();
-            return redirect()->route('admin.show.admin')->with('success','تم حذف مدير مسئول بنجاح',);
+            return redirect()->route('admin.show.admin')->with('success','تم حذف مدير مسئول بنجاح');
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول الى هذه المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -176,13 +174,13 @@ class RoleController extends Controller
         try{
             if(Auth::user()->permission->role==1) {
             $admin_permission = Permission::find($id);
-            return view('admin.role.edit',compact('admin_permission'));
+            return view('backend.role.edit',compact('admin_permission'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول الى هذه المنطقة');
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -263,7 +261,7 @@ class RoleController extends Controller
 
 
                 Permission::find($id)->update($data);
-            return redirect()->route('admin.show.admin')->with('success','تم تعديل بيانات هذا المدير بنجاح',);
+            return redirect()->route('admin.show.admin')->with('success','تم تعديل بيانات هذا المدير بنجاح');
 
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول الى هذه المنطقة');
@@ -271,7 +269,7 @@ class RoleController extends Controller
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -287,7 +285,7 @@ class RoleController extends Controller
 
                 $users = User::latest()->get();
                 if($users){
-                    return view('admin.role.user.show',compact('users'));
+                    return view('backend.role.user.show',compact('users'));
                 }
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول الى هذه المنطقة');
@@ -295,7 +293,7 @@ class RoleController extends Controller
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }

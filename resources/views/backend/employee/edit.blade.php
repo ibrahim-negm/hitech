@@ -1,4 +1,4 @@
-@extends('admin.admin_master')
+@extends('backend.layouts.admin_master')
 @section('title-content') تحديث بيانات الموظف - هاى تك للتقسيط @endsection
 
 @section('admin-content')

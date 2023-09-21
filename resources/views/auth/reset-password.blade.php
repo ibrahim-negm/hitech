@@ -47,9 +47,6 @@
                                     @csrf
                                     <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-
-
-
                                     <div class="form-group">
                                         <label class="font-weight-700">البريد الالكترونى *</label>
                                         <input name="email" required="" class="form-control" placeholder="أكتب البريد الالكترونى" type="email">

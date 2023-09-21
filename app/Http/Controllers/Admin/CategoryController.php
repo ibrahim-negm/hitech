@@ -10,13 +10,6 @@ use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
-    /**
-     * CategoryController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum,admin']);
-    }
 
     /**
      * ShowCategory
@@ -27,15 +20,15 @@ class CategoryController extends Controller
         try{
             if(Auth::user()->permission->category==1){
                 $categories = Category::latest()->get();
-                return view('admin.category.category',compact('categories'));
+                return view('backend.category.category',compact('categories'));
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
      }
@@ -68,11 +61,11 @@ class CategoryController extends Controller
 
             return redirect()->route('admin.category')->with('success','تم اضافة هذا القسم بنجاح');
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
      }
 
@@ -88,11 +81,11 @@ class CategoryController extends Controller
             Category::find($id)->delete();
             return redirect()->route('admin.category')->with('error','تم مسح هذا القسم بنجاح');
         }else{
-             return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+             return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
          }
        }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
        }
      }
 
@@ -106,14 +99,14 @@ class CategoryController extends Controller
             if(Auth::user()->permission->category==1){
             $category = Category::find($id);
 
-            return view('admin.category.edit',compact('category'));
+            return view('backend.category.edit',compact('category'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
             }
         }catch(\Exception $ex){
 
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
      }
 
@@ -143,13 +136,13 @@ class CategoryController extends Controller
 
             ]);
 
-                return redirect()->route('admin.category')->with('success','تم تحديث بيانات القسم بنجاح',);
+                return redirect()->route('admin.category')->with('success','تم تحديث بيانات القسم بنجاح');
         }else{
-             return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+             return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
          }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
      }
 

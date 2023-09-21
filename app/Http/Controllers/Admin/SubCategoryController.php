@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Auth;
 class SubCategoryController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum,admin']);
-    }
 
     /**
      * ShowSubCategory
@@ -29,15 +25,15 @@ class SubCategoryController extends Controller
                 $categories = Category::all();
                 $subcategories = Subcategory::latest()->get();
 
-                return view('admin.subcategory.sub_category', compact('categories', 'subcategories'));
+                return view('backend.subcategory.sub_category', compact('categories', 'subcategories'));
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -74,12 +70,12 @@ class SubCategoryController extends Controller
 
                 return redirect()->route('admin.subcategory')->with('success', 'تم اضافة هذا القسم الفرعى بنجاح');
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
 
     }
@@ -94,15 +90,15 @@ class SubCategoryController extends Controller
             if(Auth::user()->permission->subcategory==1) {
                 $categories = Category::all();
                 $subcategory = Subcategory::find($id);
-                return view('admin.subcategory.edit', compact('subcategory', 'categories'));
+                return view('backend.subcategory.edit', compact('subcategory', 'categories'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
         }catch(\Exception $ex){
 
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -131,14 +127,14 @@ class SubCategoryController extends Controller
 
                 ]);
 
-                return redirect()->route('admin.subcategory')->with('success', 'تم تحديث أسم القسم الفرعى بنجاح',);
+                return redirect()->route('admin.subcategory')->with('success', 'تم تحديث أسم القسم الفرعى بنجاح');
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -155,13 +151,13 @@ class SubCategoryController extends Controller
                 Subcategory::find($id)->delete();
                 return redirect()->route('admin.subcategory')->with('error', 'تم مسح هذا القسم الفرعى بنجاح');
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -181,15 +177,15 @@ class SubCategoryController extends Controller
                 $subcategories = Subcategory::latest()->get();
                 $subsubcategories = SubSubCategory::latest()->get();
 
-                return view('admin.subsubcategory.sub_subcategory', compact('categories', 'subcategories','subsubcategories'));
+                return view('backend.subsubcategory.sub_subcategory', compact('categories', 'subcategories','subsubcategories'));
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -227,12 +223,12 @@ class SubCategoryController extends Controller
 
                 return redirect()->route('admin.subsubcategory')->with('success', 'تم اضافة هذا القسم الفرعى الفرعى بنجاح');
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
 
     }
@@ -248,15 +244,15 @@ class SubCategoryController extends Controller
                 $categories = Category::all();
                 $subcategories = Subcategory::all();
                 $subsubcategory = SubSubcategory::find($id);
-                return view('admin.subsubcategory.edit', compact('subcategories', 'categories' ,'subsubcategory'));
+                return view('backend.subsubcategory.edit', compact('subcategories', 'categories' ,'subsubcategory'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
         }catch(\Exception $ex){
 
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -286,14 +282,14 @@ class SubCategoryController extends Controller
 
                 ]);
 
-                return redirect()->route('admin.subsubcategory')->with('success', 'تم تحديث أسم القسم الفرعى الفرعى بنجاح',);
+                return redirect()->route('admin.subsubcategory')->with('success', 'تم تحديث أسم القسم الفرعى الفرعى بنجاح');
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -310,13 +306,13 @@ class SubCategoryController extends Controller
                 SubSubcategory::find($id)->delete();
                 return redirect()->route('admin.subsubcategory')->with('error', 'تم مسح هذا القسم الفرعى الفرعى بنجاح');
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 

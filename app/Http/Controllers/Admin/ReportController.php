@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
-    public function __construct(){
-        $this->middleware(['auth:sanctum,admin']);
-    }
 
     /**
      * daily report function
@@ -24,16 +21,16 @@ class ReportController extends Controller
                 $today = date('d-m-y');
                 $orders = Order::whereIn('status',[1,2,3,4,5])->where('date',$today)->latest()->get();
 
-                return view('admin.report.today',compact('orders'));
+                return view('backend.report.today',compact('orders'));
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -53,16 +50,16 @@ class ReportController extends Controller
                 $orders = Order::whereIn('status',[1,2,3,4,5])->where('month',$month)->latest()->get();
 
 
-                return view('admin.report.month',compact('orders'));
+                return view('backend.report.month',compact('orders'));
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -75,13 +72,13 @@ class ReportController extends Controller
     public function SearchReport (){
         try{
             if(Auth::user()->permission->report == 1){
-                return view('admin.report.search');
+                return view('backend.report.search');
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -98,15 +95,15 @@ class ReportController extends Controller
                 $date = date('d-m-y',strtotime($request->date));
                 $orders = Order::whereIn('status',[1,2,3,4,5])->where('date',$date)->latest()->get();
 
-                return view('admin.report.search_by_date',compact('orders','date'));
+                return view('backend.report.search_by_date',compact('orders','date'));
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -123,15 +120,15 @@ class ReportController extends Controller
                 $month =$request->month;
                 $orders = Order::whereIn('status',[1,2,3,4,5])->where('month',$month)->latest()->get();
 
-                return view('admin.report.search_by_month',compact('orders','month'));
+                return view('backend.report.search_by_month',compact('orders','month'));
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
            }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -148,14 +145,14 @@ class ReportController extends Controller
                 $year =$request->year;
                 $orders = Order::whereIn('status',[1,2,3,4,5])->where('year',$year)->latest()->get();
 
-                return view('admin.report.search_by_year',compact('orders','year'));
+                return view('backend.report.search_by_year',compact('orders','year'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }

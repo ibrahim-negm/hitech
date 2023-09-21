@@ -31,9 +31,9 @@ class MainAdminController extends Controller
      */
     public function loginForm(){
         try{
-            return view('admin.auth.login');
+            return view('backend.auth.login');
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -58,7 +58,7 @@ class MainAdminController extends Controller
             return redirect()->route('admin.dashboard')->with('success','مرحبا بك ' . Auth::guard('admin')->user()->name ." ".'فى لوحة التحكم الخاصة بكم');
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -80,7 +80,7 @@ class MainAdminController extends Controller
             return redirect()->route('admin.login')->with('success','تم الخروج من لوحة التحكم الخاصة بكم بنجاح');
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }//end of method
@@ -97,7 +97,7 @@ class MainAdminController extends Controller
 
                 if(Auth::user()->permission){
 
-            return view('admin.index');
+            return view('backend.index');
                 }else{
                     $notification = array(
                         'message'=>'قم بالخروج من حساب المستخدم أولا',
@@ -107,7 +107,7 @@ class MainAdminController extends Controller
                 }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -119,9 +119,9 @@ class MainAdminController extends Controller
     public function ShowProfile(){
         try{
             $admin = Admin::find(Auth::id());
-            return view('admin.user.profile',compact('admin'));
+            return view('backend.user.profile',compact('admin'));
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -134,9 +134,9 @@ class MainAdminController extends Controller
 
         try{
             $admin = Admin::find(Auth::id());
-            return view('admin.user.edit',compact('admin'));
+            return view('backend.user.edit',compact('admin'));
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -183,7 +183,7 @@ class MainAdminController extends Controller
             return redirect()->route('admin.profile')->with('success','تم تعديل الملف الشخصى للمستخدم بنجاح');
 
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -197,10 +197,10 @@ class MainAdminController extends Controller
 
         try{
             $admin = Admin::find(Auth::id());
-            return view('admin.user.change_password',compact('admin'));
+            return view('backend.user.change_password',compact('admin'));
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
    }
@@ -243,7 +243,7 @@ class MainAdminController extends Controller
                 }
 
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
 
@@ -259,14 +259,14 @@ class MainAdminController extends Controller
             if(Auth::user()->permission->setting==1){
                 $id=1;
                 $seo = Seo::find($id);
-                return view('admin.seo.seo',compact('seo'));
+                return view('backend.seo.seo',compact('seo'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
    }
@@ -301,14 +301,14 @@ class MainAdminController extends Controller
                $data['google_analytics']=$request->google_analytics;
 
                Seo::find($id)->update($data);
-               return redirect()->back()->with('success','تم تحديث اعدادات كلمات البحث',);
+               return redirect()->back()->with('success','تم تحديث اعدادات كلمات البحث');
            }else{
                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
            }
 
        }catch(\Exception $ex){
 
-                 return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+                 return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
 
    }
@@ -324,14 +324,14 @@ class MainAdminController extends Controller
                 $id=1;
                 $setting = Setting::find($id);
                 $governorates = Governorate::all();
-                return view('admin.setting.setting',compact('setting','governorates'));
+                return view('backend.setting.setting',compact('setting','governorates'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -452,7 +452,7 @@ class MainAdminController extends Controller
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -465,12 +465,12 @@ class MainAdminController extends Controller
              try{
                  if(Auth::user()->permission->review==1){
                    $reviews = Review::latest()->get();
-                   return view('admin.review.review',compact('reviews'));
+                   return view('backend.review.review',compact('reviews'));
                  }else{
                      return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
                  }
              }catch(\Exception $ex){
-                 return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+                 return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
              }
         }
@@ -483,12 +483,12 @@ class MainAdminController extends Controller
         try{
             if(Auth::user()->permission->review==1){
                 $reviews = Review::where('status',0)->latest()->get();
-                return view('admin.review.review',compact('reviews'));
+                return view('backend.review.review',compact('reviews'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -501,12 +501,12 @@ class MainAdminController extends Controller
         try{
             if(Auth::user()->permission->review==1){
                 $reviews = Review::where('status',1)->latest()->get();
-                return view('admin.review.review',compact('reviews'));
+                return view('backend.review.review',compact('reviews'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -528,7 +528,7 @@ class MainAdminController extends Controller
                     return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
                 }
             }catch(\Exception $ex){
-                return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+                return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
             }
         }
@@ -546,12 +546,12 @@ class MainAdminController extends Controller
                            Review::find($id)->update([
                                'status'=>1,
                            ]);
-                           return view('admin.review.show', compact('review'));
+                           return view('backend.review.show', compact('review'));
                        }else{
                            return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
                        }
                    }catch(\Exception $ex){
-                       return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+                       return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
                    }
         }
@@ -593,7 +593,7 @@ class MainAdminController extends Controller
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -605,13 +605,13 @@ class MainAdminController extends Controller
         try{
             if(Auth::user()->permission->comment==1){
                 $comments = Comment::latest()->get();
-                return view('admin.comment.comment',compact('comments'));
+                return view('backend.comment.comment',compact('comments'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -624,13 +624,13 @@ class MainAdminController extends Controller
         try{
             if(Auth::user()->permission->comment==1){
                 $comments = Comment::where('status',0)->latest()->get();
-                return view('admin.comment.comment',compact('comments'));
+                return view('backend.comment.comment',compact('comments'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -643,13 +643,13 @@ class MainAdminController extends Controller
         try{
             if(Auth::user()->permission->comment==1){
                 $comments = Comment::where('status',1)->latest()->get();
-                return view('admin.comment.comment',compact('comments'));
+                return view('backend.comment.comment',compact('comments'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -672,7 +672,7 @@ class MainAdminController extends Controller
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -688,12 +688,12 @@ class MainAdminController extends Controller
             if(Auth::user()->permission->comment==1) {
                 $comment = Comment::find($id);
                 $comment_replies = Comment_reply::where('comment_id',$comment->id)->latest()->get();
-                return view('admin.comment.show', compact('comment','comment_replies'));
+                return view('backend.comment.show', compact('comment','comment_replies'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -745,7 +745,7 @@ class MainAdminController extends Controller
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -767,7 +767,7 @@ class MainAdminController extends Controller
             }
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -779,12 +779,12 @@ class MainAdminController extends Controller
             try{
                 if(Auth::user()->permission->message==1){
                     $messages= Contact::latest()->get();
-                    return view('admin.message.message',compact('messages'));
+                    return view('backend.message.message',compact('messages'));
                 }else{
                     return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
                 }
             }catch(\Exception $ex){
-                return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+                return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
             }
         }
@@ -797,12 +797,12 @@ class MainAdminController extends Controller
         try{
             if(Auth::user()->permission->message==1){
                 $messages= Contact::where('status',0)->latest()->get();
-                return view('admin.message.message',compact('messages'));
+                return view('backend.message.message',compact('messages'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -816,12 +816,12 @@ class MainAdminController extends Controller
         try{
             if(Auth::user()->permission->message==1){
                 $messages= Contact::where('status',1)->latest()->get();
-                return view('admin.message.message',compact('messages'));
+                return view('backend.message.message',compact('messages'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -835,12 +835,12 @@ class MainAdminController extends Controller
         try{
             if(Auth::user()->permission->message==1){
                 $messages= Contact::where('status',2)->latest()->get();
-                return view('admin.message.message',compact('messages'));
+                return view('backend.message.message',compact('messages'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -861,7 +861,7 @@ class MainAdminController extends Controller
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -882,14 +882,14 @@ class MainAdminController extends Controller
                     ]);
                 }
 
-                return view('admin.message.show', compact('message','replied'));
+                return view('backend.message.show', compact('message','replied'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
 
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -944,7 +944,7 @@ class MainAdminController extends Controller
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -956,14 +956,14 @@ class MainAdminController extends Controller
         try{
             if(Auth::user()->permission->stock==1){
                 $products = Product::latest()->get();
-                return view('admin.stock.stock',compact('products'));
+                return view('backend.stock.stock',compact('products'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -978,15 +978,15 @@ class MainAdminController extends Controller
             if(Auth::user()->permission->setting==1) {
                $shippings = Governorate::latest()->get();
 
-                return view('admin.shipping.shipping', compact('shippings'));
+                return view('backend.shipping.shipping', compact('shippings'));
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -1000,15 +1000,15 @@ class MainAdminController extends Controller
         try{
             if(Auth::user()->permission->setting==1) {
                 $shipping = Governorate::find($id);
-                return view('admin.shipping.edit', compact('shipping'));
+                return view('backend.shipping.edit', compact('shipping'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
         }catch(\Exception $ex){
 
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 
@@ -1038,14 +1038,14 @@ class MainAdminController extends Controller
                     'shipping_price' => $request->shipping_price,
                 ]);
 
-                return redirect()->route('admin.shipping')->with('success', 'تم تحديث سعر الشحن للمحافظة بنجاح',);
+                return redirect()->route('admin.shipping')->with('success', 'تم تحديث سعر الشحن للمحافظة بنجاح');
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لديك صلاحية للدخول لهذة المنطقة');
 
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
     }
 

@@ -14,12 +14,6 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    /**
-     * OrderController constructor.
-     */
-    public function __construct(){
-        $this->middleware(['auth:sanctum,admin']);
-    }
 
     /**
      * orders
@@ -33,14 +27,14 @@ class OrderController extends Controller
                     ->latest()->get();
 
 
-                return view('admin.order.order',compact('orders'));
+                return view('backend.order.order',compact('orders'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -57,14 +51,14 @@ class OrderController extends Controller
                     ->latest()->get();
 
 
-                return view('admin.order.order',compact('orders'));
+                return view('backend.order.order',compact('orders'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -81,14 +75,14 @@ class OrderController extends Controller
                     ->latest()->get();
 
 
-                return view('admin.order.order',compact('orders'));
+                return view('backend.order.order',compact('orders'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -105,14 +99,14 @@ class OrderController extends Controller
                     ->latest()->get();
 
 
-                return view('admin.order.order',compact('orders'));
+                return view('backend.order.order',compact('orders'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -129,14 +123,14 @@ class OrderController extends Controller
                     ->latest()->get();
 
 
-                return view('admin.order.order',compact('orders'));
+                return view('backend.order.order',compact('orders'));
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -154,7 +148,7 @@ class OrderController extends Controller
            $shipping = Shipping::where('order_id',$id)->first();
            $guarantee = Guarantee::where('order_id',$id)->first();
 
-            return view('admin.order.show',compact('order','order_details','shipping','guarantee'));
+            return view('backend.order.show',compact('order','order_details','shipping','guarantee'));
 
 
             }else{
@@ -162,7 +156,7 @@ class OrderController extends Controller
             }
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -178,7 +172,7 @@ class OrderController extends Controller
             Order::find($id)->update([
                 'status'=> 2,
             ]);
-            return redirect()->back()->with('success','نم تحديث حالة المنتج الى مرحلة المراجعة ',);
+            return redirect()->back()->with('success','نم تحديث حالة المنتج الى مرحلة المراجعة ');
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
@@ -186,7 +180,7 @@ class OrderController extends Controller
         }catch(\Exception $ex){
 
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -216,14 +210,14 @@ class OrderController extends Controller
             Order::find($id)->update([
                 'status'=> 3,
             ]);
-            return redirect()->back()->with('success','نم تحديث حالة المنتج الى مرحلة التنفيذ للعميل ',);
+            return redirect()->back()->with('success','نم تحديث حالة المنتج الى مرحلة التنفيذ للعميل ');
             }else{
             return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
         }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -251,14 +245,14 @@ class OrderController extends Controller
                 Order::find($id)->update([
                     'status'=> 5,
                 ]);
-                return redirect()->back()->with('error','نم تحديث حالة المنتج الى رفض الاستعلام للعميل ',);
+                return redirect()->back()->with('error','نم تحديث حالة المنتج الى رفض الاستعلام للعميل ');
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -275,7 +269,7 @@ class OrderController extends Controller
                 Order::find($id)->update([
                     'status'=> 4,
                 ]);
-                return redirect()->back()->with('success','نم تحديث حالة المنتج الى مرحلة الاستلام  ',);
+                return redirect()->back()->with('success','نم تحديث حالة المنتج الى مرحلة الاستلام  ');
             }else{
                 return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية لدخول هذه المنطقة');
             }
@@ -283,7 +277,7 @@ class OrderController extends Controller
         }catch(\Exception $ex){
 
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }

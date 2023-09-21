@@ -11,13 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ImageController extends Controller
 {
-    /**
-     * ImageController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum,admin']);
-    }
 
     /**
      * ShowImage
@@ -29,14 +22,14 @@ class ImageController extends Controller
             if(Auth::user()->permission->gallery == 1){
                 $services = Service::all();
                 $images = Image::latest()->get();
-                return view('admin.image.image',compact('images','services'));
+                return view('backend.image.image',compact('images','services'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
         }catch(\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -79,13 +72,13 @@ class ImageController extends Controller
                 return redirect()->route('admin.image')->with('success','تم اضافة الصور بنجاح');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
         }catch(\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -100,14 +93,14 @@ class ImageController extends Controller
             if(Auth::user()->permission->gallery == 1){
                 $services = Service::all();
                 $image = Image::find($id);
-                return view('admin.image.edit',compact('image','services'));
+                return view('backend.image.edit',compact('image','services'));
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
         }
 
     }
@@ -154,13 +147,13 @@ class ImageController extends Controller
                 return redirect()->route('admin.image')->with('success','تم تحديث الصورة بنجاح');
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
         }catch (\Exception $ex){
 
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
@@ -180,13 +173,13 @@ class ImageController extends Controller
 
 
             }else{
-                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة',);
+                return redirect()->route('admin.dashboard')->with('error','ليس لك صلاحية للدخول فى هذه المنطقة');
 
             }
 
 
         }catch (\Exception $ex){
-            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى',);
+            return redirect()->route('admin.dashboard')->with('error','حدث خطأ ما . الرجاء المحاولة مرة اخرى');
 
         }
     }
