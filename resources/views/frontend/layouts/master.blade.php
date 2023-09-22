@@ -92,6 +92,8 @@ $lang= app()->getLocale();
             font-family: 'Cairo', sans-serif;
         }
     </style>
+    <!-- google QAuth -->
+    <meta name="google-site-verification" content="TrVP1TusWFBHF0cmUzdfQ6hX62zqOFdlF0-UKYWzsT0" />
 </head>
 
 <body id="bg">

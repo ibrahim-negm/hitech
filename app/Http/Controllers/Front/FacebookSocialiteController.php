@@ -32,9 +32,9 @@ class FacebookSocialiteController extends Controller
 
             if($finduser){
 
-                Auth::login($finduser);
+                Auth::login($finduser,true);
 
-                return redirect('/');
+                return redirect('/dashboard');
 
             }else{
                 $newUser = User::create([
@@ -44,9 +44,9 @@ class FacebookSocialiteController extends Controller
                     'social_type'=> 'facebook',
                     'password' => encrypt('my-facebook')
                 ]);
-                Auth::login($finduser);
+                Auth::login($finduser,true);
 
-                return redirect('/');
+                return redirect('/dashboard');
             }
 
 

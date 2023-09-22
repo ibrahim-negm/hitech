@@ -32,9 +32,9 @@ class GoogleSocialiteController extends Controller
 
             if($finduser){
 
-                Auth::login($finduser);
+                Auth::login($finduser,true);
 
-                return redirect('/');
+                return redirect('/dashboard');
 
             }else{
                 $newUser = User::create([
@@ -45,9 +45,9 @@ class GoogleSocialiteController extends Controller
                     'password' => encrypt('my-google')
                 ]);
 
-                Auth::login($newUser);
+                Auth::login($newUser,true);
 
-                return redirect('/');
+                return redirect('/dashboard');
             }
 
 

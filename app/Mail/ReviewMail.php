@@ -34,7 +34,7 @@ class ReviewMail extends Mailable
     {
         $email = $this->email;
         $username = $this->username;
-        return $this->from('sales@hitech-egypt.com')->view('mail.review',compact('email','username'))
+        return $this->from('info@hitech-egypt.com')->view('mail.review',compact('email','username'))
             ->subject('هدية من هاى تك للتقسيط');
 
     }

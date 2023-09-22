@@ -6,15 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "bumbummen99/shoppingcart": "^4.0",
         "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^9.0",
-        "laravel/sanctum": "^2.14",
-        "laravel/tinker": "^2.7",
-        "laravel/helpers": "^1.4",
         "intervention/image": "^2.5",
-        "bumbummen99/shoppingcart": "^4.0",
-        "laravel/socialite": "^5.2"
+        "laravel/framework": "^9.0",
+        "laravel/helpers": "^1.4",
+        "laravel/sanctum": "^2.14",
+        "laravel/socialite": "^5.9",
+        "laravel/tinker": "^2.7"
     },
     "require-dev": {
         "laravel/breeze": "^1.19",

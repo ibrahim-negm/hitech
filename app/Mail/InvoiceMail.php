@@ -34,7 +34,7 @@ class InvoiceMail extends Mailable
     {
         $order = $this->orderData;
         $shipping = $this->shipping_data;
-        return $this->from('sales@hitech-egypt.com')->view('mail.invoice',compact('order','shipping'))
+        return $this->from('info@hitech-egypt.com')->view('mail.invoice',compact('order','shipping'))
             ->subject('تم عملية استعلامك بنجاح - هاى تك للتقسيط ');
     }
 }

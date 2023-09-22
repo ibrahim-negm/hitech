@@ -34,7 +34,7 @@ class Message extends Mailable
     {
         $reply_data =$this->reply;
         $message_data = $this->message;
-        return $this->from('support@hitech-egypt.com')->view('mail.reply_message',compact('reply_data','message_data'))
+        return $this->from('info@hitech-egypt.com')->view('mail.reply_message',compact('reply_data','message_data'))
             ->subject(  $reply_data->subject  );
     }
 }

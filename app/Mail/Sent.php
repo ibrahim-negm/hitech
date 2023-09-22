@@ -34,7 +34,7 @@ class Sent extends Mailable
     {
         $reply_data =$this->reply;
         $comment = $this->comment;
-        return $this->from('support@hitech-eg.com')->view('mail.reply',compact('reply_data','comment'))
+        return $this->from('info@hitech-eg.com')->view('mail.reply',compact('reply_data','comment'))
             ->subject(  'الرد على تعليق ');
     }
 }
